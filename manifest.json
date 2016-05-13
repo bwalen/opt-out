@@ -4,11 +4,13 @@
   "name": "Garbage Man",
   "description": "This extension searches the current page and deletes elements which contain words or phrases to be filtered out",
   "version": "1.0",
+  "content_scripts": [
+   {
+     "matches": ["http://*/*", "https://*/*"],
+     "js": ["underscore.js","default.js"]
+   }
+ ],
 
-  "browser_action": {
-    "default_icon": "apple.jpg",
-    "default_popup": "popup.html"
-  },
   "permissions": [
     "activeTab"
   ]
