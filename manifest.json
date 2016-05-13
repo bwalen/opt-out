@@ -7,7 +7,7 @@
   "content_scripts": [
    {
      "matches": ["http://*/*", "https://*/*"],
-     "js": ["underscore.js","default.js"]
+     "js": ["underscore.js","underscore.string.min.js","default.js"]
    }
  ],
 
