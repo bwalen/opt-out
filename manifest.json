@@ -10,7 +10,6 @@
      "js": ["underscore.js","underscore.string.min.js","default.js"]
    }
  ],
-
   "permissions": [
     "activeTab"
   ]

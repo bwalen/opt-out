@@ -1,13 +1,11 @@
 var listOfItems = ["trump", "bieber", "Bieber", "Trump", "Kanye", "kanye", "Kardashian", "kardashian","TRUMP"];
-//var allDivs = document.getElementsByTagName("div");
-start(listOfItems);
+setInterval(start(listOfItems),1000);
 
 function start(listOfItems){
   removeAllElements(searchElements(document.getElementsByTagName("p"),listOfItems));
   removeAllElements(searchElements(document.getElementsByTagName("li"), listOfItems));
   removeAllElements(searchElements(document.getElementsByTagName("a"),listOfItems));
   removeAllElements(searchElements(document.getElementsByTagName("span"),listOfItems));
-  removeAllElements(searchElements(document.getElementsByTagName("div"),listOfItems));
   searchPictureNames(listOfItems);
   searchLinks(listOfItems);
 }
@@ -42,7 +40,6 @@ function searchLinks(listOfElements){
   for(var j = 0; j<listOfElements.length; j++){
     for(var i = 0; i < linkList.length; i++){
       if(s.include(linkList[i].href,listOfItems[j])){
-        console.log(linkList[i]);
         removeElement(linkList[i]);
       }
     }
