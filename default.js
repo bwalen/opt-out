@@ -55,7 +55,10 @@ function removeAllElements(listOfElements){
 }
 
 function removeElement(element){
-  if(element.parentNode){
+  if(!element.nextSibling && !element.previousSibling){
+    element.parentNode.parentNode.removeChild(element.parentNode);
+  }
+  else if(element.parentNode){
     element.parentNode.removeChild(element);
   }
 }
