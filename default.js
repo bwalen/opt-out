@@ -1,5 +1,19 @@
 var listOfItems = ["trump", "bieber", "Bieber", "Trump", "Kanye", "kanye", "Kardashian", "kardashian","TRUMP"];
-setInterval(start(listOfItems),1000);
+start(listOfItems);
+
+window.addEventListener("load", function(e){
+  start(listOfItems);
+  watcher();
+});
+
+function watcher(){
+  var observer = new MutationObserver(function(mutations){
+    mutations.forEach(function(mutation) {
+      start(listOfItems);
+    });
+  });
+  observer.observe(document, {childList:true,subtree: true});
+}
 
 function start(listOfItems){
   removeAllElements(searchElements(document.getElementsByTagName("p"),listOfItems));
@@ -14,11 +28,12 @@ function searchElements(arrayOfItems, listOfItems){
   var cleanedList = [];
   for(var j = 0; j < listOfItems.length; j++){
     for(var i = 0; i < arrayOfItems.length; i++){
-      if(s.include(arrayOfItems[i].innerText,listOfItems[j])){
+      if(s.include(arrayOfItems[i].textContent,listOfItems[j])){
         cleanedList.push(arrayOfItems[i]);
       }
     }
   }
+  console.log(cleanedList);
   return cleanedList;
 }
 
