@@ -9,7 +9,7 @@ window.addEventListener("load", function(e){
 function watcher(){
   var observer = new MutationObserver(function(mutations){
     mutations.forEach(function(mutation) {
-      start(listOfItems);
+      console.log(mutation);
     });
   });
   observer.observe(document, {childList:true,subtree: true});
@@ -33,7 +33,6 @@ function searchElements(arrayOfItems, listOfItems){
       }
     }
   }
-  console.log(cleanedList);
   return cleanedList;
 }
 
@@ -70,10 +69,11 @@ function removeAllElements(listOfElements){
 }
 
 function removeElement(element){
-  if(!element.nextSibling && !element.previousSibling){
-    element.parentNode.parentNode.removeChild(element.parentNode);
+  if(element.previousSibling==null && element.nextSibling==null && element.parentNode && element.parentNode.parentNode){
+    //element.parentNode.parentNode.removeChild(element.parentNode);
+    removeElement(element.parentNode);
   }
-  else if(element.parentNode){
+  if(element.parentNode){
     element.parentNode.removeChild(element);
   }
 }
