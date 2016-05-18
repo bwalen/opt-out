@@ -9,7 +9,9 @@ window.addEventListener("load", function(e){
 function watcher(){
   var observer = new MutationObserver(function(mutations){
     mutations.forEach(function(mutation) {
-      console.log(mutation);
+      if(mutation.addedNodes[0]){
+        processMutations(mutation.addedNodes[0]);
+      }
     });
   });
   observer.observe(document, {childList:true,subtree: true});
@@ -70,10 +72,29 @@ function removeAllElements(listOfElements){
 
 function removeElement(element){
   if(element.previousSibling==null && element.nextSibling==null && element.parentNode && element.parentNode.parentNode){
-    //element.parentNode.parentNode.removeChild(element.parentNode);
     removeElement(element.parentNode);
   }
   if(element.parentNode){
     element.parentNode.removeChild(element);
+  }
+}
+
+function processMutations(element){
+  for(var i = 0; i < listOfItems.length; i++){
+    if(element.src){
+      if(s.include(element.src,listOfItems[i])){
+        removeElement(element);
+      }
+    }
+    else if(element.textContent){
+      if(s.include(element.textContent,listOfItems[i])){
+        removeElement(element);
+      }
+    }
+    else if(element.href){
+      if(s.include(element.href,listOfItems[i])){
+        removeElement(element);
+      }
+    }
   }
 }
