@@ -43,7 +43,7 @@ function searchPictureNames(listOfItems){
   var picturesList = document.getElementsByTagName("img");
   for(var j = 0; j < listOfItems.length; j++ ){
     for (var i = 0; i < picturesList.length; i++){
-      if(s.include(picturesList[i].src,listOfItems[j])){
+      if(s.include(picturesList[i].src,listOfItems[j]) || s.include(picturesList[i].title,listOfItems[j]) || s.include(picturesList[i].alt,listOfItems[j])){
         removeElement(picturesList[i]);
       }
     }
@@ -80,20 +80,25 @@ function removeElement(element){
 }
 
 function processMutations(element){
-  for(var i = 0; i < listOfItems.length; i++){
-    if(element.src){
-      if(s.include(element.src,listOfItems[i])){
-        removeElement(element);
+  if(element.tagName != "SCRIPT" && element.tagName != "IFRAME"){
+    for(var i = 0; i < listOfItems.length; i++){
+      if(element.src){
+        if(s.include(element.src,listOfItems[i]) || s.include(element.title,listOfItems[i]) || s.include(element.alt,listOfItems[i])){
+          removeElement(element);
+        }
       }
-    }
-    else if(element.textContent){
-      if(s.include(element.textContent,listOfItems[i])){
-        removeElement(element);
+      if(element.textContent){
+        if(s.include(element.textContent,listOfItems[i])){
+          console.log(element);
+          removeElement(element);
+        }
       }
-    }
-    else if(element.href){
-      if(s.include(element.href,listOfItems[i])){
-        removeElement(element);
+      if(element.href){
+        console.log(element.href);
+        if(s.include(element.href,listOfItems[i])){
+          console.log(element);
+          removeElement(element);
+        }
       }
     }
   }
