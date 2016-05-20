@@ -10,7 +10,9 @@ function watcher(){
   var observer = new MutationObserver(function(mutations){
     mutations.forEach(function(mutation) {
       if(mutation.addedNodes[0]){
-        processMutations(mutation.addedNodes[0]);
+        for(var i = 0; i < mutation.addedNodes.length; i++){
+          processMutations(mutation.addedNodes[i]);
+        }
       }
     });
   });
@@ -89,14 +91,11 @@ function processMutations(element){
       }
       if(element.textContent){
         if(s.include(element.textContent,listOfItems[i])){
-          console.log(element);
           removeElement(element);
         }
       }
       if(element.href){
-        console.log(element.href);
         if(s.include(element.href,listOfItems[i])){
-          console.log(element);
           removeElement(element);
         }
       }
