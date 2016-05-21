@@ -1,4 +1,4 @@
-var listOfItems = ["trump", "bieber", "Bieber", "Trump", "Kanye", "kanye", "Kardashian", "kardashian","TRUMP"];
+var listOfItems = ["trump", "Trump", "TRUMP"];
 start(listOfItems);
 
 window.addEventListener("load", function(e){
@@ -11,7 +11,7 @@ function watcher(){
     mutations.forEach(function(mutation) {
       if(mutation.addedNodes[0]){
         for(var i = 0; i < mutation.addedNodes.length; i++){
-          processMutations(mutation.addedNodes[i]);
+          processElements(mutation.addedNodes[i]);
         }
       }
     });
@@ -20,7 +20,7 @@ function watcher(){
 }
 
 function start(listOfItems){
-  removeAllElements(document.querySelectorAll("p,li,a,span,article,h1,h2,h3,h4,h5,img,twitterwidget"));
+  removeAllElements(document.querySelectorAll("p,li,a,span,article,h1,h2,h3,h4,h5,img"));
 }
 
 function searchPictureNames(listOfItems){
@@ -38,7 +38,7 @@ function searchPictureNames(listOfItems){
 function removeAllElements(listOfElements){
   if(listOfElements.length > 0){
     for(var i = 0; i < listOfElements.length; i++){
-      processMutations(listOfElements[i]);
+      processElements(listOfElements[i]);
     }
   }
 }
@@ -52,7 +52,7 @@ function removeElement(element){
   }
 }
 
-function processMutations(element){
+function processElements(element){
   if(element.tagName != "SCRIPT"){
     for(var i = 0; i < listOfItems.length; i++){
       if(element.src){
