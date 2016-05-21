@@ -20,24 +20,7 @@ function watcher(){
 }
 
 function start(listOfItems){
-  removeAllElements(searchElements(document.getElementsByTagName("p"),listOfItems));
-  removeAllElements(searchElements(document.getElementsByTagName("li"), listOfItems));
-  removeAllElements(searchElements(document.getElementsByTagName("a"),listOfItems));
-  removeAllElements(searchElements(document.getElementsByTagName("span"),listOfItems));
-  searchPictureNames(listOfItems);
-  searchLinks(listOfItems);
-}
-
-function searchElements(arrayOfItems, listOfItems){
-  var cleanedList = [];
-  for(var j = 0; j < listOfItems.length; j++){
-    for(var i = 0; i < arrayOfItems.length; i++){
-      if(s.include(arrayOfItems[i].textContent,listOfItems[j])){
-        cleanedList.push(arrayOfItems[i]);
-      }
-    }
-  }
-  return cleanedList;
+  removeAllElements(document.querySelectorAll("p,li,a,span,article,h1,h2,h3,h4,h5,img,twitterwidget"));
 }
 
 function searchPictureNames(listOfItems){
@@ -52,22 +35,10 @@ function searchPictureNames(listOfItems){
   }
 }
 
-function searchLinks(listOfElements){
-  var cleanedList = [];
-  var linkList = document.getElementsByTagName("a");
-  for(var j = 0; j<listOfElements.length; j++){
-    for(var i = 0; i < linkList.length; i++){
-      if(s.include(linkList[i].href,listOfItems[j])){
-        removeElement(linkList[i]);
-      }
-    }
-  }
-}
-
 function removeAllElements(listOfElements){
   if(listOfElements.length > 0){
     for(var i = 0; i < listOfElements.length; i++){
-      removeElement(listOfElements[i]);
+      processMutations(listOfElements[i]);
     }
   }
 }
@@ -82,7 +53,7 @@ function removeElement(element){
 }
 
 function processMutations(element){
-  if(element.tagName != "SCRIPT" && element.tagName != "IFRAME"){
+  if(element.tagName != "SCRIPT"){
     for(var i = 0; i < listOfItems.length; i++){
       if(element.src){
         if(s.include(element.src,listOfItems[i]) || s.include(element.title,listOfItems[i]) || s.include(element.alt,listOfItems[i])){
