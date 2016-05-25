@@ -1,8 +1,7 @@
 var listOfItems = ["trump","Trump","TRUMP"];
-start(listOfItems);
-
+scanPage();
 window.addEventListener("load", function(e){
-  start(listOfItems);
+  scanPage();
   watcher();
 });
 
@@ -19,7 +18,7 @@ function watcher(){
   observer.observe(document, {childList:true,subtree: true});
 }
 
-function start(listOfItems){
+function scanPage(){
   removeAllElements(document.querySelectorAll("p,li,a,span,article,h1,h2,h3,h4,h5,img"));
 }
 
