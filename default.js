@@ -1,4 +1,4 @@
-var listOfItems = ["trump", "Trump", "TRUMP"];
+var listOfItems = ["trump","Trump","TRUMP"];
 start(listOfItems);
 
 window.addEventListener("load", function(e){
