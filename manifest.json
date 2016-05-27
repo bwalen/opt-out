@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Opt-out",
+  "name": "Opt-out: Donald Trump",
   "description": "This extension searches the current page and deletes elements which contain words or phrases to be filtered out",
   "version": "1.1",
   "content_scripts": [

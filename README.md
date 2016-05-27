@@ -1,4 +1,6 @@
 #Opt-out
+Download now from the [Chrome Webstore](https://chrome.google.com/webstore/detail/opt-out-donald-trump/ihcpccaakobgbhdecdohjlcaffkkielf).  
+
 This project is a Google Chrome browser extension which allows the user to opt-out of Donald Trump on the internet.  
 
 ##About  
