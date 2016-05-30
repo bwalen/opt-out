@@ -20,6 +20,17 @@ function watcher(){
 
 function scanPage(){
   removeAllElements(document.querySelectorAll("p,li,a,span,article,h1,h2,h3,h4,h5,img"));
+  removeAllElements(processDivs(document.getElementsByTagName("div")));
+}
+
+function processDivs(allDivs){
+  var cleanedList = [];
+  for(var i = 0; i < allDivs.length; i++){
+    if(allDivs[i].childNodes.length == 0){
+      cleanedList.push(allDivs[i]);
+    }
+  }
+  return cleanedList;
 }
 
 function searchPictureNames(listOfItems){
